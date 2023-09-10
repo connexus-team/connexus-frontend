@@ -32,10 +32,10 @@ export default function Home() {
     console.log("loading");
     const res = await writeAsync();
     setDataHash(res.hash);
-    const wait = await res.wait();
-    toast.success(`Minted: ${res?.hash}`);
     console.log("res: ", res);
+    const wait = await res.wait();
     console.log("wait: ", wait);
+    toast.success(`Minted: ${res?.hash}`);
   }
 
   /* async function onFunction2() {
