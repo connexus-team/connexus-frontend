@@ -1,5 +1,5 @@
 
-import { BigNumber, Contract, ContractTransaction, ethers, Overrides, Signer } from 'ethers';
+import { BigNumber, Contract, ethers, Overrides, Signer } from 'ethers';
 import {Management, Management__factory} from "../contracts";
 
 const GASLIMIT_DEFAULT = '500000';
@@ -13,14 +13,12 @@ export async function calculateGasLimit(contract: Contract, functionName: string
   }
 }
 
-
-
 type CreateConnexusCardParams = {
-  to: string,
+  to: `0x${string}`,
   overrides?: Overrides & { from?: string };
 }
 
-export class CrowdFundWriteContract {
+export class ManagmentContract {
   private contract: Management;
   private signer: Signer;
 
@@ -31,8 +29,7 @@ export class CrowdFundWriteContract {
     this.signer = signer;
   }
 
-
-  public async createConnexusCard(params: CreateConnexusCardParams): Promise<any> {
+  public async createConnexusCard(params: CreateConnexusCardParams): Promise<string | undefined>{
     try {
       const { 
         to,
@@ -54,9 +51,15 @@ export class CrowdFundWriteContract {
         overridesWithGasLimit
       );
 
-      console.log(transaction);
+      const receipt = await transaction.wait();
 
-      return transaction;
+      const userAddress = receipt.events?.map((event: any) => {
+        if (event.event === 'tbaAddr') {
+          return event.args[0];
+        }
+      });
+
+      return userAddress;
     } catch (error) {
       throw new Error(`Error executing createConnexusCard() of contract: ${error}`);
     }
