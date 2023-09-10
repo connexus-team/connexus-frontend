@@ -1,47 +1,30 @@
 "use client";
 import "@rainbow-me/rainbowkit/styles.css";
+import { configureChains, createClient, sepolia, WagmiConfig } from "wagmi";
+import { SmartContextProvider } from "@/contexts";
 import {
-  connectorsForWallets,
-  darkTheme,
   getDefaultWallets,
+  connectorsForWallets,
   RainbowKitProvider,
 } from "@rainbow-me/rainbowkit";
-import {
-  argentWallet,
-  ledgerWallet,
-  trustWallet,
-} from "@rainbow-me/rainbowkit/wallets";
-import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { publicProvider } from "wagmi/providers/public";
-import { alchemyProvider } from "wagmi/providers/alchemy";
-import { sepolia } from "viem/chains";
-import { sepolia_apikey } from "@/constants";
-import { SmartContextProvider } from "@/contexts";
 
 const { chains, provider, webSocketProvider } = configureChains(
   [sepolia],
-  [alchemyProvider({ apiKey: sepolia_apikey }), publicProvider()]
+  [publicProvider()]
 );
 
-const projectId = "4ebbf2eddb8738c4c84cd8082b5e9756";
+const demoAppInfo = {
+  appName: "Connexus",
+};
 
 const { wallets } = getDefaultWallets({
-  appName: "Omnes Blockchain",
-  projectId,
+  appName: "RainbowKit demo",
+  projectId: "4ebbf2eddb8738c4c84cd8082b5e9756",
   chains,
 });
 
-const connectors = connectorsForWallets([
-  ...wallets,
-  {
-    groupName: "Omens Wallet Connector",
-    wallets: [
-      argentWallet({ projectId, chains }),
-      trustWallet({ projectId, chains }),
-      ledgerWallet({ projectId, chains }),
-    ],
-  },
-]);
+const connectors = connectorsForWallets([...wallets]);
 
 const wagmiClient = createClient({
   autoConnect: true,
@@ -53,15 +36,7 @@ const wagmiClient = createClient({
 const Providers = ({ children }: { children: React.ReactNode }) => {
   return (
     <WagmiConfig client={wagmiClient}>
-      <RainbowKitProvider
-        showRecentTransactions={true}
-        coolMode
-        chains={chains}
-        theme={darkTheme({
-          overlayBlur: "small",
-          fontStack: "system",
-        })}
-      >
+      <RainbowKitProvider appInfo={demoAppInfo} chains={chains}>
         <SmartContextProvider>{children}</SmartContextProvider>
       </RainbowKitProvider>
     </WagmiConfig>

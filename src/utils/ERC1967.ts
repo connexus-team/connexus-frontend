@@ -6,9 +6,10 @@ export const ERC1967 = {
       "0xe53bC3A00eD4CB4500b4d3b3F5C0c1270AB65443" as `0x${string}`,
     abi: erc1967_ABI,
     functions: [
-      "function createConnexusCard(address to)",
-      "function tokenizeCar(address payable tba, uint256 numberChassi, string memory doclink)",
-      "function tokenizeRealState(address payable tba, uint256 numberChassi, string memory doclink, uint256 fraction)",
+      "function createConnexusCard(address _to)",
+      "function createBankTBACard(address _collection, uint256 _tokenId)",
+      "function tokenizeCar(address payable _tba, uint256 _numberChassi, string memory _doclink)",
+      "function tokenizeRealState(address payable _tba, uint256 _numberChassi, string memory _doclink, uint256 _fraction)",
     ],
   },
 };

@@ -23,7 +23,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ![Alt text](image-1.png)
 
 
-The app checks if a connected user is whitelisted and in this case it allows him to mint an exclusive quest ID. 
+The app checks if![Alt text](image-2.png) a connected user is whitelisted and in this case it allows him to mint an exclusive quest ID. 
 The whitelisting process is handled by our backend and for more information the player should check our documentation.
 
 ## Deploy on Vercel
