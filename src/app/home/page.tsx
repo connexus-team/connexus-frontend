@@ -1,15 +1,17 @@
 "use client";
-import { useSmartContext } from "@/contexts";
-import { useContractERC1967 } from "@/hooks";
 import { ERC1967 } from "@/utils";
 import { BigNumber } from "ethers";
+import { useState } from "react";
 import toast from "react-hot-toast";
-import { useAccount, useContractWrite, usePrepareContractWrite } from "wagmi";
+import {
+  useAccount,
+  useContractWrite,
+  usePrepareContractWrite,
+} from "wagmi";
 
 export default function Home() {
-  const { smartAccount } = useSmartContext();
   const { address } = useAccount();
-  const { onCreateTBA } = useContractERC1967(smartAccount!);
+  const [dataHash, setDataHash] = useState<`0x${string}`>();
 
   const { config } = usePrepareContractWrite({
     address: ERC1967.sepolia.contractAddress,
@@ -25,15 +27,15 @@ export default function Home() {
   const { writeAsync } = useContractWrite(config);
 
   async function onFunction1() {
-    const tx = await onCreateTBA(address!);
-    console.log(tx);
-    /* console.log("caiu");
+    console.log("caiu");
     if (!writeAsync) return console.log("sem writeAsync");
     console.log("loading");
-    const tx = await writeAsync();
-    const res = await tx.wait();
-    toast.success(`Minted: ${tx.hash}`);
-    console.log(res); */
+    const res = await writeAsync();
+    setDataHash(res.hash);
+    const wait = await res.wait();
+    toast.success(`Minted: ${res?.hash}`);
+    console.log("res: ", res);
+    console.log("wait: ", wait);
   }
 
   /* async function onFunction2() {
