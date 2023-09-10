@@ -7,22 +7,25 @@ import {
   ITokenizeRealStatePayload,
   IERC1967,
 } from "@/interfaces";
+import { Management__factory } from "@/contracts";
 
 export function useContractERC1967(smartAccount: SmartAccount) {
   const [isLoading, setIsLoading] = useState(false);
   const { onSendTransactions } = useSendTransactions(smartAccount);
+/*   const provider = getEthersProvider();
+  const signer = provider.getSigner();
+  const factory = new Management__factory(signer);
+  const contract = factory.attach(contractAddress); */
 
-  async function onCreateTBA(addressSigner: `0x${string}`) {
+  async function onCreateTBA(addressSigner: `0x$ {string}`) {
     setIsLoading(true);
     const data = IERC1967.encodeFunctionData("createConnexusCard", [
       addressSigner,
     ]);
-
     const txGenerateData = {
       to: ERC1967.sepolia.contractAddress,
       data,
     };
-    
     const tx = await onSendTransactions([txGenerateData!]);
     setIsLoading(false);
     return tx;

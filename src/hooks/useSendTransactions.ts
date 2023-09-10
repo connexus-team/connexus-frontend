@@ -1,8 +1,6 @@
 import type { ITxData } from "@/interfaces";
 import type SmartAccount from "@biconomy/smart-account";
-import type { ChainId } from "@biconomy/core-types";
 import toast from "react-hot-toast";
-import { sepolia } from "wagmi";
 
 export function useSendTransactions(smartAccount: SmartAccount) {
   async function onSendTransactions(txData: ITxData[]) {
