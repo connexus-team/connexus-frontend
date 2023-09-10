@@ -3,7 +3,7 @@ import erc1967_ABI from "../abi/erc1967.json";
 export const ERC1967 = {
   sepolia: {
     contractAddress:
-      "0xe53bC3A00eD4CB4500b4d3b3F5C0c1270AB65443" as `0x${string}`,
+      "0x92F67523bd01f76360E0e473d72494c938777e59" as `0x${string}`,
     abi: erc1967_ABI,
     functions: [
       "function createConnexusCard(address _to)",

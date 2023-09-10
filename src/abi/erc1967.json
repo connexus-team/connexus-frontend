@@ -14,7 +14,11 @@
     "name": "Management__CallerNotERC6551Owner",
     "type": "error"
   },
-  { "inputs": [], "name": "Management__CallerNotERC721Owner", "type": "error" },
+  {
+    "inputs": [],
+    "name": "Management__CallerNotERC721Owner",
+    "type": "error"
+  },
   {
     "anonymous": false,
     "inputs": [
@@ -133,24 +137,54 @@
   },
   {
     "inputs": [
-      { "internalType": "address", "name": "collection", "type": "address" },
-      { "internalType": "uint256", "name": "tokenId", "type": "uint256" }
+      {
+        "internalType": "address",
+        "name": "collection",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      }
     ],
     "name": "createBankTBACard",
-    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [{ "internalType": "address", "name": "to", "type": "address" }],
-    "name": "createConnexusCard",
-    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
     "stateMutability": "nonpayable",
     "type": "function"
   },
   {
     "inputs": [
-      { "internalType": "address payable", "name": "tba", "type": "address" }
+      {
+        "internalType": "address",
+        "name": "to",
+        "type": "address"
+      }
+    ],
+    "name": "createConnexusCard",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address payable",
+        "name": "tba",
+        "type": "address"
+      }
     ],
     "name": "importTBAAccount",
     "outputs": [],
@@ -159,9 +193,21 @@
   },
   {
     "inputs": [
-      { "internalType": "address", "name": "connexusCard", "type": "address" },
-      { "internalType": "address", "name": "rwaCar", "type": "address" },
-      { "internalType": "address", "name": "rwaRealstate", "type": "address" },
+      {
+        "internalType": "address",
+        "name": "connexusCard",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "rwaCar",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "rwaRealstate",
+        "type": "address"
+      },
       {
         "internalType": "address",
         "name": "cardTBAImplementation",
@@ -181,7 +227,13 @@
   {
     "inputs": [],
     "name": "owner",
-    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
     "stateMutability": "view",
     "type": "function"
   },
@@ -195,20 +247,36 @@
   {
     "inputs": [],
     "name": "paused",
-    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
     "stateMutability": "view",
     "type": "function"
   },
   {
     "inputs": [],
     "name": "proxiableUUID",
-    "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }],
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
     "stateMutability": "view",
     "type": "function"
   },
   {
     "inputs": [
-      { "internalType": "address", "name": "collection", "type": "address" }
+      {
+        "internalType": "address",
+        "name": "collection",
+        "type": "address"
+      }
     ],
     "name": "removeCollection",
     "outputs": [],
@@ -224,7 +292,11 @@
   },
   {
     "inputs": [
-      { "internalType": "address", "name": "collection", "type": "address" }
+      {
+        "internalType": "address",
+        "name": "collection",
+        "type": "address"
+      }
     ],
     "name": "setBankCollection",
     "outputs": [],
@@ -233,8 +305,16 @@
   },
   {
     "inputs": [
-      { "internalType": "address", "name": "bank", "type": "address" },
-      { "internalType": "bool", "name": "permission", "type": "bool" }
+      {
+        "internalType": "address",
+        "name": "bank",
+        "type": "address"
+      },
+      {
+        "internalType": "bool",
+        "name": "permission",
+        "type": "bool"
+      }
     ],
     "name": "setBankPermission",
     "outputs": [],
@@ -243,8 +323,16 @@
   },
   {
     "inputs": [
-      { "internalType": "address", "name": "manager", "type": "address" },
-      { "internalType": "bool", "name": "permission", "type": "bool" }
+      {
+        "internalType": "address",
+        "name": "manager",
+        "type": "address"
+      },
+      {
+        "internalType": "bool",
+        "name": "permission",
+        "type": "bool"
+      }
     ],
     "name": "setManager",
     "outputs": [],
@@ -253,9 +341,21 @@
   },
   {
     "inputs": [
-      { "internalType": "address payable", "name": "tba", "type": "address" },
-      { "internalType": "uint256", "name": "numberChassi", "type": "uint256" },
-      { "internalType": "string", "name": "doclink", "type": "string" }
+      {
+        "internalType": "address payable",
+        "name": "tba",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "numberChassi",
+        "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "doclink",
+        "type": "string"
+      }
     ],
     "name": "tokenizeCar",
     "outputs": [],
@@ -264,10 +364,26 @@
   },
   {
     "inputs": [
-      { "internalType": "address payable", "name": "tba", "type": "address" },
-      { "internalType": "uint256", "name": "number", "type": "uint256" },
-      { "internalType": "string", "name": "linkdoc", "type": "string" },
-      { "internalType": "uint256", "name": "fraction", "type": "uint256" }
+      {
+        "internalType": "address payable",
+        "name": "tba",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "number",
+        "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "linkdoc",
+        "type": "string"
+      },
+      {
+        "internalType": "uint256",
+        "name": "fraction",
+        "type": "uint256"
+      }
     ],
     "name": "tokenizeRealState",
     "outputs": [],
@@ -276,7 +392,11 @@
   },
   {
     "inputs": [
-      { "internalType": "address", "name": "newOwner", "type": "address" }
+      {
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
     ],
     "name": "transferOwnership",
     "outputs": [],
@@ -310,7 +430,11 @@
         "name": "newImplementation",
         "type": "address"
       },
-      { "internalType": "bytes", "name": "data", "type": "bytes" }
+      {
+        "internalType": "bytes",
+        "name": "data",
+        "type": "bytes"
+      }
     ],
     "name": "upgradeToAndCall",
     "outputs": [],
