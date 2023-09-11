@@ -1,13 +1,6 @@
 import { useState } from "react";
-import {
-  Borrow,
-  CardTBA,
-  RWACar,
-  calculateGasLimit,
-  getEthersProvider,
-} from "@/utils";
+import { CardTBA, RWACar, calculateGasLimit, getEthersProvider } from "@/utils";
 import { CardTBA__factory } from "@/contracts";
-import { ethers } from "ethers";
 
 export function useContractCardTBA() {
   const [isLoading, setIsLoading] = useState(false);
@@ -18,16 +11,12 @@ export function useContractCardTBA() {
 
   async function onExecute(
     value: number, //0
-    operation: number //0
+    operation: number, //0
+    data: string // encoded
   ) {
     setIsLoading(true);
     try {
       const to = RWACar.sepolia.contractAddress;
-      const iface = new ethers.utils.Interface(RWACar.sepolia.abi);
-      const data = iface.encodeFunctionData("setApprovalForAll", [
-        Borrow.sepolia.contractAddress,
-        true,
-      ]);
       console.log(data);
       const gasLimit = await calculateGasLimit(contract, "execute", [
         to,

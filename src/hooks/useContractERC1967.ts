@@ -63,6 +63,7 @@ export function useContractERC1967() {
   async function onTokenizeCar(payload: ITokenizeCarPayload) {
     setIsLoading(true);
     try {
+      console.log(payload);
       const { numberChassi, doclink } = payload;
       console.log(tbaAddress, numberChassi, doclink);
       if (!tbaAddress) return;
@@ -92,18 +93,18 @@ export function useContractERC1967() {
   async function onTokenizeRealState(payload: ITokenizeRealStatePayload) {
     setIsLoading(true);
     try {
-      const { numberChassi, doclink, fraction } = payload;
+      const { fraction, linkdoc, number } = payload;
       const gasLimit = await calculateGasLimit(contract, "tokenizeRealState", [
         tbaAddress,
-        numberChassi,
-        doclink,
+        number,
+        linkdoc,
         fraction,
       ]);
       const gas = { gasLimit };
       const transaction = await contract.tokenizeRealState(
         tbaAddress!,
-        numberChassi,
-        doclink,
+        number,
+        linkdoc,
         fraction,
         gas
       );

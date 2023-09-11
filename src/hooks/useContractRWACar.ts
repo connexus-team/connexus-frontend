@@ -9,7 +9,7 @@ export function useContractRWACar() {
   const factory = new RWACar__factory(signer);
   const contract = factory.attach(RWACar.sepolia.contractAddress);
 
-  async function onSafeTransferFrom(
+  async function onTransferFrom(
     addressSigner: `0x${string}`,
     address: `0x${string}`,
     tokenId: number
@@ -87,7 +87,7 @@ export function useContractRWACar() {
 
   return {
     isLoading,
-    onSafeTransferFrom,
+    onTransferFrom,
     onSetApproveForAll,
     onSetManagement,
   };

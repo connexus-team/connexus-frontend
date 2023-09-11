@@ -1,9 +1,10 @@
 export interface ITokenizeCarPayload {
-  tbaAddress: string;
   numberChassi: number;
   doclink: string;
 }
 
-export interface ITokenizeRealStatePayload extends ITokenizeCarPayload {
+export interface ITokenizeRealStatePayload {
+  number: number;
+  linkdoc: string;
   fraction: number;
 }
