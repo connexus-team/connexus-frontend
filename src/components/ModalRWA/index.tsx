@@ -15,7 +15,8 @@ export default function ModalRWA({ visible }: ModalProps) {
   const { handleSubmit, register } = useForm<any>();
 
   async function onTokenize(values: any) {
-    if (values.car) {
+    const isCard = true //values.car
+    if (isCard) {
       const payload = {
         numberChassi: values.numberChassi,
         doclink: values.doclink,

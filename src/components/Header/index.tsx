@@ -6,10 +6,12 @@ import OrangeButton from "../OrangeButton";
 import useModalStore from "@/stores/modal";
 import { useAccount } from "wagmi";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { useAuthContext } from "@/contexts";
 
 export default function Header() {
   const pathname = usePathname();
   const { toggleVisibleBorrow, toggleVisibleRWA } = useModalStore();
+  const { connectWallet } = useAuthContext();
   const { address } = useAccount();
   const firstFour = address?.substring(0, 4);
   const lastFour = address?.slice(-4);
@@ -60,6 +62,10 @@ export default function Header() {
             );
           }}
         </ConnectButton.Custom>
+        {/* <OrangeButton
+          onClick={connectWallet}
+          text={address ? result : "Connect Wallet"}
+        /> */}
         <OrangeButton text="Token RWA" onClick={toggleVisibleRWA} />
         <OrangeButton text="Borrow" onClick={toggleVisibleBorrow} />
         <Image src={"/usa.svg"} width={70} height={70} alt="language" />

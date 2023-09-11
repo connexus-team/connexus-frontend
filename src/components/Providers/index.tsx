@@ -8,6 +8,7 @@ import {
   RainbowKitProvider,
 } from "@rainbow-me/rainbowkit";
 import { publicProvider } from "wagmi/providers/public";
+import { useEffect } from "react";
 
 const { chains, provider, webSocketProvider } = configureChains(
   [sepolia],

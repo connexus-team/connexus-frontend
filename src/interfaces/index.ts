@@ -8,4 +8,5 @@ export interface ITxData {
 export interface IAuthContext {
   tbaAddress?: `0x${string}`;
   onSetTBA: (tbaAddress: `0x${string}`) => void;
+  connectWallet: () => Promise<any>;
 }
