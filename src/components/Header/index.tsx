@@ -4,10 +4,16 @@ import Image from "next/image";
 import Link from "next/link";
 import OrangeButton from "../OrangeButton";
 import useModalStore from "@/stores/modal";
+import { useAccount } from "wagmi";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 export default function Header() {
   const pathname = usePathname();
   const { toggleVisibleBorrow, toggleVisibleRWA } = useModalStore();
+  const { address } = useAccount();
+  const firstFour = address?.substring(0, 4);
+  const lastFour = address?.slice(-4);
+  const result = `${firstFour}...${lastFour}`;
 
   return (
     <header className="flex h-[80px] items-center justify-between px-40 shadow-sm">
@@ -16,9 +22,7 @@ export default function Header() {
         <Link href="/home">
           <div
             className={`flex h-[80px] items-center hover:border-b-2 hover:border-orange hover:font-semibold ${
-              pathname === "/home"
-                ? "border-b-4 border-orange font-semibold"
-                : ""
+              pathname === "/home" && "border-b-4 border-orange font-semibold"
             }`}
           >
             Home
@@ -27,9 +31,8 @@ export default function Header() {
         <Link href="/historic">
           <div
             className={`flex h-[80px] items-center hover:border-b-2 hover:border-orange hover:font-semibold ${
-              pathname === "/historic"
-                ? "border-b-4 border-orange font-semibold"
-                : ""
+              pathname === "/historic" &&
+              "border-b-4 border-orange font-semibold"
             }`}
           >
             Historic
@@ -38,9 +41,8 @@ export default function Header() {
         <Link href="/account">
           <div
             className={`flex h-[80px] items-center hover:border-b-2 hover:border-orange hover:font-semibold ${
-              pathname === "/account"
-                ? "border-b-4 border-orange font-semibold"
-                : ""
+              pathname === "/account" &&
+              "border-b-4 border-orange font-semibold"
             }`}
           >
             Account
@@ -48,6 +50,16 @@ export default function Header() {
         </Link>
       </div>
       <div className="flex space-x-4">
+        <ConnectButton.Custom>
+          {({ openConnectModal }) => {
+            return (
+              <OrangeButton
+                onClick={openConnectModal}
+                text={address ? result : "Connect Wallet"}
+              />
+            );
+          }}
+        </ConnectButton.Custom>
         <OrangeButton text="Token RWA" onClick={toggleVisibleRWA} />
         <OrangeButton text="Borrow" onClick={toggleVisibleBorrow} />
         <Image src={"/usa.svg"} width={70} height={70} alt="language" />
