@@ -3,7 +3,7 @@ import borrow_ABI from "../abi/borrow.json";
 export const Borrow = {
   sepolia: {
     contractAddress:
-      "0x6A5944Eb95272a37e48A11A6F71fEA539f940dd1" as `0x${string}`,
+      "0x70B122d4c2C9A007e9258a6B507bdBaaade03EBD" as `0x${string}`,
     abi: borrow_ABI,
     functions: [
       "function borrow(valueBorrowed _value, address payable _tba)",

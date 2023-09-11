@@ -1,25 +1,30 @@
 "use client";
-import { ERC1967 } from "@/utils";
-import { BigNumber } from "ethers";
-import { useState } from "react";
-import toast from "react-hot-toast";
 import {
-  useAccount,
-  useContractWrite,
-  usePrepareContractWrite,
-} from "wagmi";
+  useContractCardTBA,
+  useContractERC1967,
+  useContractRWACar,
+} from "@/hooks";
+import { RWACar } from "@/utils";
+import { useAccount } from "wagmi";
 
 export default function Home() {
   const { address } = useAccount();
-  const [dataHash, setDataHash] = useState<`0x${string}`>();
+  const { isLoading, onCreateTBA, onTokenizeCar } = useContractERC1967();
+  const { onSetManagement } = useContractRWACar();
+  const { onExecute } = useContractCardTBA();
+  const data = {
+    tbaAddress: "",
+    numberChassi: 999,
+    doclink: "doclink",
+  };
 
   return (
     <main className="flex h-screen items-center  justify-center bg-black">
       <button
-        className="rounded-xl bg-white p-10 transition-all duration-300 ease-in-out hover:bg-opacity-70 active:scale-95"
-        onClick={undefined}
+        className="rounded-xl bg-white p-10 font-mono text-2xl font-bold text-black transition-all duration-300 ease-in-out hover:bg-opacity-70 active:scale-95"
+        onClick={() => onExecute(RWACar.sepolia.contractAddress, 0, 0)}
       >
-        APERTE PARA REALIZAR A FUNÇÃO
+        {!isLoading ? "APERTE PARA REALIZAR A FUNÇÃO" : "LOADING..."}
       </button>
     </main>
   );

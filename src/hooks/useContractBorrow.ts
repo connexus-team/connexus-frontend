@@ -1,55 +1,82 @@
-import type SmartAccount from "@biconomy/smart-account";
-import { useSendTransactions } from "./useSendTransactions";
 import { useState } from "react";
-import { IBorrow } from "@/interfaces";
-import { Borrow } from "@/utils";
+import { Borrow, calculateGasLimit, getEthersProvider } from "@/utils";
+import { BorrowAndStake__factory } from "@/contracts";
 
-export function useContractBorrow(smartAccount: SmartAccount) {
+export function useContractBorrow() {
   const [isLoading, setIsLoading] = useState(false);
-  const { onSendTransactions } = useSendTransactions(smartAccount);
+  const provider = getEthersProvider();
+  const signer = provider?.getSigner();
+  const factory = new BorrowAndStake__factory(signer);
+  const contract = factory.attach(Borrow.sepolia.contractAddress);
 
-  async function onBorrow(value: number, tba: `0x${string}`) {
+  async function onBorrow(value: number, tbaAddress: string) {
     setIsLoading(true);
-    const data = IBorrow.encodeFunctionData("borrow", [value, tba]);
-    const txGenerateData = {
-      to: Borrow.sepolia.contractAddress,
-      data,
-    };
-    const tx = await onSendTransactions([txGenerateData!]);
-    setIsLoading(false);
-    return tx;
+    try {
+      const gasLimit = await calculateGasLimit(contract, "borrow", [
+        value,
+        tbaAddress,
+      ]);
+      const gas = { gasLimit };
+      const transaction = await contract.borrow(value, tbaAddress, gas);
+      console.log("transaction: ", transaction);
+      const tx = await transaction.wait();
+      console.log("tx: ", tx);
+      setIsLoading(false);
+      return tx;
+    } catch (error) {
+      setIsLoading(false);
+      console.error(error);
+    }
   }
 
-  async function onStakeCar(tokenId: number, tba: `0x${string}`) {
+  async function onStakeCar(tokenId: number, tbaAddress: `0x${string}`) {
     setIsLoading(true);
-    const data = IBorrow.encodeFunctionData("stakeCar", [tokenId, tba]);
-    const txGenerateData = {
-      to: Borrow.sepolia.contractAddress,
-      data,
-    };
-    const tx = await onSendTransactions([txGenerateData!]);
-    setIsLoading(false);
-    return tx;
+    try {
+      const gasLimit = await calculateGasLimit(contract, "stakeCar", [
+        tokenId,
+        tbaAddress,
+      ]);
+      const gas = { gasLimit };
+      const transaction = await contract.stakeCar(tokenId, tbaAddress, gas);
+      console.log("transaction: ", transaction);
+      const tx = await transaction.wait();
+      console.log("tx: ", tx);
+      setIsLoading(false);
+      return tx;
+    } catch (error) {
+      setIsLoading(false);
+      console.error(error);
+    }
   }
 
   async function onStakeRealState(
     tokenId: number,
     amount: number,
-    tba: `0x${string}`
+    tbaAddress: `0x${string}`
   ) {
     setIsLoading(true);
-    const data = IBorrow.encodeFunctionData("stakeRealState", [
-      tokenId,
-      amount,
-      tba,
-    ]);
-    const txGenerateData = {
-      to: Borrow.sepolia.contractAddress,
-      data,
-    };
-    const tx = await onSendTransactions([txGenerateData!]);
-    setIsLoading(false);
-    return tx;
+    try {
+      const gasLimit = await calculateGasLimit(contract, "stakeRealState", [
+        tokenId,
+        amount,
+        tbaAddress,
+      ]);
+      const gas = { gasLimit };
+      const transaction = await contract.stakeRealState(
+        tokenId,
+        amount,
+        tbaAddress,
+        gas
+      );
+      console.log("transaction: ", transaction);
+      const tx = await transaction.wait();
+      console.log("tx: ", tx);
+      setIsLoading(false);
+      return tx;
+    } catch (error) {
+      setIsLoading(false);
+      console.error(error);
+    }
   }
 
   return {

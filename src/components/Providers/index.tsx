@@ -1,7 +1,7 @@
 "use client";
 import "@rainbow-me/rainbowkit/styles.css";
 import { configureChains, createClient, sepolia, WagmiConfig } from "wagmi";
-import { SmartContextProvider } from "@/contexts";
+import { AppContexts, useAuthContext } from "@/contexts";
 import {
   getDefaultWallets,
   connectorsForWallets,
@@ -37,7 +37,7 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
   return (
     <WagmiConfig client={wagmiClient}>
       <RainbowKitProvider appInfo={demoAppInfo} chains={chains}>
-        <SmartContextProvider>{children}</SmartContextProvider>
+        <AppContexts>{children}</AppContexts>
       </RainbowKitProvider>
     </WagmiConfig>
   );
