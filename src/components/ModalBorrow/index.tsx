@@ -15,8 +15,12 @@ export default function ModalBorrow({ visible }: ModalProps) {
   const { onBorrow } = useContractBorrow();
   const { handleSubmit } = useForm<any>();
 
-  async function onCreate(values: { number: number }) {
-    await onBorrow(values.number);
+  async function onCreate(values: { id: number; value: number }) {
+    const data = {
+      id: values.id,
+      value: values.value,
+    };
+    await onBorrow(data);
   }
 
   if (visible) {

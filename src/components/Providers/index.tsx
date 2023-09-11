@@ -1,7 +1,6 @@
-"use client";
 import "@rainbow-me/rainbowkit/styles.css";
 import { configureChains, createClient, sepolia, WagmiConfig } from "wagmi";
-import { AppContexts, useAuthContext } from "@/contexts";
+import { AppContexts } from "@/contexts";
 import {
   getDefaultWallets,
   connectorsForWallets,
