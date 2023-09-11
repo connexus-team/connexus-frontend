@@ -2,230 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: "AmpleSoftPro";
-  src: url("/fonts/AmpleSoftPro-Medium.ttf") format("truetype");
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "AmpleSoftPro";
-  src: url("/fonts/AmpleSoftPro-Light.ttf") format("truetype");
-  font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "AmpleSoftPro";
-  src: url("/fonts/AmpleSoftPro-Regular.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "AmpleSoftPro";
-  src: url("/fonts/AmpleSoftPro-Bold.ttf") format("truetype");
-  font-weight: bold;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Soft";
-  src: local("Soft"), url(/fonts/soft_pro.ttf) format("truetype");
-}
-
-html {
-  @apply overflow-y-scroll;
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  box-sizing: border-box;
 }
 
 body {
-  @apply bg-gray-50;
-  background-color: #111315;
-  color: white;
-  letter-spacing: 2px;
-  font-family: "AmpleSoftPro", sans-serif;
+  background-color: #f0f0f0;
 }
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+::-webkit-scrollbar {
+  width: 10px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+::-webkit-scrollbar-track {
+  background: #f0f0f0;
 }
 
-.achievements-reward-btn {
-  border-radius: 8px;
-  padding: 10px 5px;
-  background-image: linear-gradient(
-      rgba(255, 255, 255, 0),
-      rgba(255, 255, 255, 0)
-    ),
-    linear-gradient(75deg, #85ffc4, #bc85ff);
-  background-origin: border-box;
-  background-clip: content-box, border-box;
-  box-shadow: 1px 1000px 1px #000 inset;
+::-webkit-scrollbar-thumb {
+  background: #DC4516;
 }
 
-.mint-reward-btn {
-  border-radius: 5px;
-  padding: 15px 5px;
-  width: 200px;
-  border: solid 0.1em transparent;
-  background-image: linear-gradient(
-      rgba(255, 255, 255, 0),
-      rgba(255, 255, 255, 0)
-    ),
-    linear-gradient(101deg, #5583f3, #ac68ff);
-  background-origin: border-box;
-  background-clip: content-box, border-box;
-  box-shadow: 2px 1000px 1px #111315 inset;
+.custom-grid {
+  display: grid;
+  grid-template-columns: minmax(517px, 1fr) minmax(1059px, 2fr);
+  gap: 1rem;
 }
 
-.loading-btn {
-  background: radial-gradient(
-    circle at 10% 20%,
-    rgb(255, 197, 61) 0%,
-    rgb(255, 94, 7) 90%
-  );
-}
+.custom-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
 
-.success-btn {
-  background: linear-gradient(to right, rgb(182, 244, 146), rgb(51, 139, 147));
-}
-
-.button-mint-page {
-  border-radius: 6px;
-  padding: 7px 40px;
-  width: 100%;
-  border: solid 0.08em transparent;
-  background-image: linear-gradient(
-      rgba(255, 255, 255, 0),
-      rgba(255, 255, 255, 0)
-    ),
-    linear-gradient(101deg, #85ffc4, #5cc6ff, #bc85ff);
-  background-origin: border-box;
-  background-clip: content-box, border-box;
-  box-shadow: 2px 1000px 1px black inset;
-  background-size: 300%;
-  background-position: left;
-  transition: background-position 350ms;
-}
-
-.modal-mint-quest {
-  width: 400px;
-  border-radius: 8px;
-  background-color: black;
-  letter-spacing: 0.1rem;
-}
-
-.button-mint-page-failed {
-  border-radius: 6px;
-  padding: 7px 40px;
-  width: 100%;
-  border: solid 0.08em transparent;
-  background-image: linear-gradient(
-      rgba(255, 255, 255, 0),
-      rgba(255, 255, 255, 0)
-    ),
-    linear-gradient(
-      101deg,
-      rgb(162, 2, 63),
-      rgb(231, 62, 68),
-      rgb(255, 129, 79)
-    );
-  background-origin: border-box;
-  background-clip: content-box, border-box;
-  box-shadow: 2px 1000px 1px black inset;
-}
-.wrap {
-  flex-wrap: wrap;
-}
-.button-mint-page-wallet {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px;
-  width: 100%;
-  border: solid 0.08em transparent;
-  border-radius: 6px;
-  background-image: linear-gradient(
-      rgba(255, 255, 255, 0),
-      rgba(255, 255, 255, 0)
-    ),
-    linear-gradient(101deg, #85ffc4, #5cc6ff, #bc85ff);
-  background-origin: border-box;
-  background-clip: content-box, border-box;
-  box-shadow: 2px 1000px 1px black inset;
-}
-.sizing-btn-mint {
-  padding: 7px 6px;
-  font-size: 90%;
-}
-
-.border-item-color {
-  border-color: #5f5cff;
-}
-
-.border-circle-item {
-  background-color: #5f5cff;
-}
-
-.btn-game-creativity {
-  border-radius: 8px;
-  padding: 6px 10px;
-  border: solid 0.1em transparent;
-  background-image: linear-gradient(
-      rgba(255, 255, 255, 0),
-      rgba(255, 255, 255, 0)
-    ),
-    linear-gradient(101deg, #59f5cf, #59f5cf);
-  background-origin: border-box;
-  background-clip: content-box, border-box;
-  box-shadow: 2px 1000px 1px #111315 inset;
-}
-.input-nft {
-  color: black;
-  background: white;
-  border-radius: 5px;
-  padding: 2px;
-}
-.select-nft-network {
-  color: black;
-  background: white;
-  height: 100%;
-  border-radius: 5px;
-}
-.row {
-  width: 100%;
-  height: 25%;
-  border-top: 1px solid white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-}
-.row-first {
-  width: 100%;
-  height: 25%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-}
-.row-nft-data {
-  width: 100%;
-  height: 100%;
-  border-top: 1px solid white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
 }

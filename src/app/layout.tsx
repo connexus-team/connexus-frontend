@@ -2,7 +2,11 @@
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import Providers from "@/components/Providers";
-import { Header } from "@/components/Header";
+import { Sora } from "next/font/google"
+
+const sora = Sora({
+  subsets: ['latin']
+})
 
 export const metadata = {
   title: "Connexus",
@@ -16,10 +20,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body className={sora.className}>
         <Providers>
           <Toaster position="bottom-right" />
-          <Header />
           {children}
         </Providers>
       </body>
