@@ -22,7 +22,7 @@ export default function Home() {
     <main className="flex h-screen items-center  justify-center bg-black">
       <button
         className="rounded-xl bg-white p-10 font-mono text-2xl font-bold text-black transition-all duration-300 ease-in-out hover:bg-opacity-70 active:scale-95"
-        onClick={() => onExecute(RWACar.sepolia.contractAddress, 0, 0)}
+        onClick={() => onExecute(0, 0)}
       >
         {!isLoading ? "APERTE PARA REALIZAR A FUNÇÃO" : "LOADING..."}
       </button>

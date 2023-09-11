@@ -24,15 +24,11 @@ export function useContractCardTBA() {
     try {
       const to = RWACar.sepolia.contractAddress;
       const iface = new ethers.utils.Interface(RWACar.sepolia.abi);
-      const data2 = iface.encodeFunctionData("setApprovalForAll", [//0xa22cb46500000000000000000000000070b122d4c2c9a007e9258a6b507bdbaaade03ebd0000000000000000000000000000000000000000000000000000000000000001
+      const data = iface.encodeFunctionData("setApprovalForAll", [
         Borrow.sepolia.contractAddress,
         true,
       ]);
-      const text =
-        "setApprovalForAll(0x70B122d4c2C9A007e9258a6B507bdBaaade03EBD,true)";
-      const asd = Buffer.from(text, "utf8").toString("base64");
-      const data = ethers.utils.arrayify(asd);
-      console.log("data: ", data);
+      console.log(data);
       const gasLimit = await calculateGasLimit(contract, "execute", [
         to,
         value,
